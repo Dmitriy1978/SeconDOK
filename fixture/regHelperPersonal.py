@@ -185,7 +185,7 @@ class regHelperPersonal(base):
 
         #check name
         element = driver.find_element_by_xpath(regHelperPersonal.xpath_first_name)
-        assert element.text == "Tester", "failed, wrong first name"
+        assert element.text == "Testerq", "failed, wrong first name"
 
         #check last name
         element = driver.find_element_by_xpath(regHelperPersonal.xpath_last_name)

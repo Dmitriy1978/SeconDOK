@@ -5,6 +5,7 @@ global path
 #path = os.path.dirname(os.path.realpath(__file__))
 #sys.path.append("{0}\\Test".format(path))
 import pytest
+import time
 
 
 
@@ -19,7 +20,7 @@ def pytest_runtest_makereport(item, call):
     extra = getattr(report, 'extra', [])
     if report.when == 'call':
         driver.save_screenshot('C:\\Users\\John\\PycharmProjects\\SeconDOK\\Test_result\\log_screen.png')
-        #from selenium import webdriver
+        from selenium import webdriver
         #screen = driver.get_screenshot_as_base64()
         #extra.append(pytest_html.extras.image(screen, mime_type='image/png', extension='png'))
         #url = driver.current_url
@@ -27,7 +28,7 @@ def pytest_runtest_makereport(item, call):
         #xfail = hasattr(report, 'wasxfail')
         #if (report.skipped and xfail) or (report.failed and not xfail):
             #only add additional html on failure
-            #extra.append(pytest_html.extras.html('<div>Additional HTML</div>'))
+            #extra.append(pytest_html.extras.html('<div>\\?\Additional HTML</div>'))
         report.extra = extra
 
 
@@ -40,25 +41,16 @@ def start(request):
     if "Windows" in system:
         from selenium import webdriver
         driver = webdriver.Chrome()
-        driver.implicitly_wait(10)
         #driver = webdriver.Firefox()
+        driver.implicitly_wait(30)
         request.cls.driver = driver
         driver.maximize_window()
         def fin():
             driver.delete_all_cookies()
+            driver.close()
             driver.quit()
         request.addfinalizer(fin)
 
-
-
-
-
-    #print(system)
-
-
-
-
-    '''
 
     elif "Linux" in system:
         from selenium import webdriver
@@ -80,7 +72,17 @@ def start(request):
         print("Unknown platform")
     return driver
 
-    '''
+
+
+    #print(system)
+
+
+
+
+
+
+
+
 
 
     '''

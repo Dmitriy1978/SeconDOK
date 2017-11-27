@@ -39,4 +39,4 @@ class regHelperBillInfo(base):
         driver = self.driver
         wait.element_xpath_active(driver, regHelperBillInfo.submit_reg_xpath)
         driver.find_element_by_xpath(regHelperBillInfo.submit_reg_xpath).click()
-        time.sleep(6)
+        time.sleep(10)
